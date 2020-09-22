@@ -28,7 +28,7 @@ class UserRepository
     {
         $model = $this->users;
         try {
-
+            $model->role_id = $input['role_id'];
             $model->username = $input['username'];
             $model->fullname = $input['fullname'];
             $model->age = $input['age'];

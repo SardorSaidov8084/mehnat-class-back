@@ -27,7 +27,8 @@ class UpdateUserRequest extends FormRequest
             'username' => "required|string|unique:users,username,".request()->id,
             'fullname' => 'required',
             'age' => 'numeric|max:70',
-            'status' => 'nullable|numeric|max:70'
+            'status' => 'nullable|numeric|max:70',
+            'role_id' => 'nullable|numeric',
         ];
     }
 }

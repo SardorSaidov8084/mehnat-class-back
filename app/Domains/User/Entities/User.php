@@ -24,11 +24,6 @@ class User extends Authenticatable implements ResponsibleInterface
     protected static function boot()
     {
         parent::boot();
-
-        // static::addGlobalScope('adult', function (Builder $builder) {
-        //     $builder->where('age', '>', 17);
-        // });
-
     }
     /**
      * The attributes that are mass assignable.
@@ -36,7 +31,7 @@ class User extends Authenticatable implements ResponsibleInterface
      * @var array
      */
     protected $fillable = [
-        'username',  'password', 'fullname', 'status', 'age'
+        'username',  'password', 'fullname', 'status', 'age', 'role_id'
     ];
 
     /**
@@ -68,6 +63,7 @@ class User extends Authenticatable implements ResponsibleInterface
             'fullname' => $this->fullname,
             'age' => $this->age,
             'status' => $this->status,
+            'role_id' => $this->role_id,
         ];
     }
     public function role(){
