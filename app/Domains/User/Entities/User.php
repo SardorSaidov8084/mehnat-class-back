@@ -64,6 +64,7 @@ class User extends Authenticatable implements ResponsibleInterface
             'age' => $this->age,
             'status' => $this->status,
             'role_id' => $this->role_id,
+            'role'    => $this->role
         ];
     }
     public function role(){
