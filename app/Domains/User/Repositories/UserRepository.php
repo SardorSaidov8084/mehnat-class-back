@@ -64,4 +64,37 @@ class UserRepository
     {
         return $this->users->query();
     }
+     public function filter(Builder $query): Builder
+    {
+        $user_name = request()->get('username', false);
+        $age = request()->get('age', false);
+        $status = request()->get('status', false);
+
+        if ($user_name){
+            $query->where('username', 'like', "%$user_name%");
+        }
+
+        if ($age){
+            $query->where('age', '=', $age);
+        }
+
+        if ($status){
+            switch ($status) {
+                case 1:
+                    $query->active();
+                    break;
+                case 2:
+                    $query->disabled();
+                    break;
+                case 0:
+                    $query->bunned();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        return $query;
+    }
+
 }

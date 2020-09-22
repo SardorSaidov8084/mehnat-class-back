@@ -15,9 +15,9 @@ class UserController extends Controller
 {
     private $userService;
     private $smsGate;
-    public function __construct()
+    public function __construct(UserService $service)
     {
-        $this->userService = new UserService;
+        $this->userService = $service;
     }
 
     public function index()

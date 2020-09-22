@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::get('/test', function(){
+    return  Str::plural(Str::snake('RolePermission'));
+});
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api', 'middleware' => 'cors'], function () {
 	
     Route::apiResource('users', 'UserController');
+    Route::apiResource('roles', 'RoleController');
 });

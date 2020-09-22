@@ -68,7 +68,7 @@ class UserService
     public function getUsers(): Collection
     {
         $users = $this->userRepo->getQuery();
-        $users = $this->filter($users);
+        $users = $this->userRepo->filter($users);
         $users = $this->sort($users);
         $users = $users->orderBy('id', 'desc');
         $users = $this->userRepo->getAll($users);

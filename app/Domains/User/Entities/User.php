@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Mehnat\Core\Interfaces\ResponsibleInterface;
+use App\Models\Role;
 
 class User extends Authenticatable implements ResponsibleInterface
 {
@@ -24,9 +25,9 @@ class User extends Authenticatable implements ResponsibleInterface
     {
         parent::boot();
 
-        static::addGlobalScope('adult', function (Builder $builder) {
-            $builder->where('age', '>', 17);
-        });
+        // static::addGlobalScope('adult', function (Builder $builder) {
+        //     $builder->where('age', '>', 17);
+        // });
 
     }
     /**
@@ -62,11 +63,15 @@ class User extends Authenticatable implements ResponsibleInterface
     public function transformer():array
     {
         return [
+            'id' => $this->id,
             'username' => $this->username,
             'fullname' => $this->fullname,
             'age' => $this->age,
             'status' => $this->status,
         ];
+    }
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
 
 }
