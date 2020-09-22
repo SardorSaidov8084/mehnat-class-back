@@ -19,19 +19,10 @@ class RoleRequest extends FormRequest
 
     public function rules()
     {
-        if(!$this->role){
-            $rules = [
-                'name' => 'required|string|max:255',
-                'slug' => 'required|string|max:255|unique:roles',
-            ];
-        }
-        else{
-            $rules = [
-                'name' => 'required|string|max:255',
-                'slug' => 'required|string|max:255',
-            ];
-        }
-        return $rules;
+        return [
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:roles'. ($this->role ? ',slug,'.request()->id : ''),
+        ];
     }
 
     protected function failedValidation(Validator $validator)
